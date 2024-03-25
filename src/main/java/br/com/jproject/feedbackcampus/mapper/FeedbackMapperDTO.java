@@ -12,4 +12,5 @@ public interface FeedbackMapperDTO {
 
     FeedbackDTO feedBackToFeedBackDTO(Feedback entity);
     Feedback feedBackDTOToFeedBack(FeedbackDTO entity);
+
 }

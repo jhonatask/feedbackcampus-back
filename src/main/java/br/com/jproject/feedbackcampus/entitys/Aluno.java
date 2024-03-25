@@ -17,7 +17,6 @@ public class Aluno {
     private String nomeAluno;
     @DBRef
     private Curso curso;
-    private boolean identificado;
     private String matricula;
     private String telefone;
 }

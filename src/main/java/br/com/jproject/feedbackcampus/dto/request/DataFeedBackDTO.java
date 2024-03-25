@@ -1,20 +1,20 @@
-package br.com.jproject.feedbackcampus.dto;
+package br.com.jproject.feedbackcampus.dto.request;
 
-import br.com.jproject.feedbackcampus.entitys.Aluno;
+import br.com.jproject.feedbackcampus.dto.AlunoDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class FeedbackDTO {
-
-    private String id;
-    private CursoDTO curso;
-    private Aluno aluno;
+public class DataFeedBackDTO {
+    private String cursoId;
+    private AlunoDTO aluno;
+    private boolean identificado;
     private String duvida;
     private String critica;
     private String sugestao;

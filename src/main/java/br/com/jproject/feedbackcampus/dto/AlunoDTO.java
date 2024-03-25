@@ -12,7 +12,6 @@ public class AlunoDTO {
     private String id;
     private String nomeAluno;
     private CursoDTO curso;
-    private boolean identificado;
     private String matricula;
     private String telefone;
 }

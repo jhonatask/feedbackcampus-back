@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Mapper(componentModel = "spring")
 public interface CursoMapperDTO {
-
     CursoDTO cursoToCursoDTO(Curso entity);
     Curso cursoDTOToCurso(CursoDTO entity);
+
 }
