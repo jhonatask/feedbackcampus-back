@@ -18,5 +18,6 @@ public class FeedbackDTO {
     private String duvida;
     private String critica;
     private String sugestao;
+    private String denuncia;
     private String feedBackPositivo;
 }
