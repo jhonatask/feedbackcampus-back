@@ -10,12 +10,19 @@ import br.com.jproject.feedbackcampus.entitys.Curso;
 import br.com.jproject.feedbackcampus.entitys.Feedback;
 import br.com.jproject.feedbackcampus.mapper.FeedbackMapperDTO;
 import br.com.jproject.feedbackcampus.repositorys.FeedbackRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class FeedbackService {
+
+    @Value("${email.subject.denuncia}")
+    private String subjectDenuncia;
+
+    @Value("${email.subject.duvida}")
+    private String subjectDuvida;
 
     private final FeedbackRepository feedbackRepository;
     private final FeedbackMapperDTO feedbackMapperDTO;
@@ -46,6 +53,7 @@ public class FeedbackService {
             enviarNotificacaoDenuncia(dataFeedBackDTO.getDenuncia(), curso);
         }
         feedback.setSugestao(dataFeedBackDTO.getSugestao());
+        feedback.setDenuncia(dataFeedBackDTO.getDenuncia());
         feedback.setFeedBackPositivo(dataFeedBackDTO.getFeedBackPositivo());
         feedbackRepository.save(feedback);
         return feedbackMapperDTO.feedBackToFeedBackDTO(feedback);
@@ -53,7 +61,7 @@ public class FeedbackService {
 
     private void enviarNotificacaoDenuncia(String denuncia, Curso curso) {
         try {
-            emailSenderService.sendEmail(curso.getEmail(),"Nova denuncia!", denuncia);
+            emailSenderService.sendEmail(curso.getEmail(),subjectDenuncia, denuncia);
         } catch (Exception e) {
             throw new EmailServiceExcepetion("Error ao enviar email", e);
         }
@@ -61,7 +69,7 @@ public class FeedbackService {
 
     private void enviarNotificacaoDuvida(String duvida, Curso curso) {
         try {
-            emailSenderService.sendEmail(curso.getEmail(),"Nova Duvida !", duvida);
+            emailSenderService.sendEmail(curso.getEmail(),subjectDuvida, duvida);
         } catch (Exception e) {
             throw new EmailServiceExcepetion("Error ao enviar email", e);
         }
