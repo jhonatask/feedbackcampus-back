@@ -10,12 +10,14 @@ import br.com.jproject.feedbackcampus.entitys.Curso;
 import br.com.jproject.feedbackcampus.entitys.Feedback;
 import br.com.jproject.feedbackcampus.mapper.FeedbackMapperDTO;
 import br.com.jproject.feedbackcampus.repositorys.FeedbackRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class FeedbackService {
 
     @Value("${email.subject.denuncia}")
@@ -28,16 +30,7 @@ public class FeedbackService {
     private final FeedbackMapperDTO feedbackMapperDTO;
     private final CursoService cursoService;
     private final AlunoService alunoService;
-
     private final EmailSenderService emailSenderService;
-
-    public FeedbackService(FeedbackRepository feedbackRepository, FeedbackMapperDTO feedbackMapperDTO, CursoService cursoService, AlunoService alunoService, EmailSenderService emailSenderService) {
-        this.feedbackRepository = feedbackRepository;
-        this.feedbackMapperDTO = feedbackMapperDTO;
-        this.cursoService = cursoService;
-        this.alunoService = alunoService;
-        this.emailSenderService = emailSenderService;
-    }
 
     public FeedbackDTO create(DataFeedBackDTO dataFeedBackDTO) {
         Curso curso = cursoService.findCurso(dataFeedBackDTO.getCursoId()).orElseThrow(CursoNotFoundException::new);
